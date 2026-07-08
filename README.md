@@ -1,36 +1,361 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🤖 AI-Powered CSV Importer
 
-## Getting Started
+An AI-powered CSV Importer built as part of the GrowEasy Software Developer Assignment.
 
-First, run the development server:
+The application intelligently imports CSV files with different column names, layouts, and structures, then uses Google Gemini AI to map them into the GrowEasy CRM format.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🚀 Live Demo
+
+### Frontend
+
+> https://groweasy-assignment-fe.vercel.app/
+
+### Backend
+
+> https://groweasy-assignment-be.onrender.com
+
+---
+
+## 📷 Screenshots
+
+### Upload CSV
+
+![alt text](image.png)
+
+---
+
+### CSV Preview
+
+![alt text](image-1.png)
+
+---
+
+### AI Parsed CRM Results
+
+![alt text](image-2.png)
+
+---
+
+## ✨ Features
+
+### Frontend
+
+- Upload CSV files
+- Drag & Drop upload
+- CSV Preview
+- Responsive Table
+- Horizontal Scroll
+- Vertical Scroll
+- Sticky Table Header
+- Import Statistics
+- Loading Overlay
+- Progress Indicator
+- Success & Error Toasts
+
+### Backend
+
+- REST API
+- CSV Parsing
+- Batch Processing
+- Google Gemini AI Integration
+- Intelligent CRM Field Mapping
+- AI Validation Layer
+- Structured JSON Response
+
+---
+
+## 🧠 AI Features
+
+The application intelligently understands different CSV formats.
+
+Example:
+
+CSV A
+
+| Customer | Mail ID | Phone |
+|-----------|----------|--------|
+
+↓
+
+CSV B
+
+| Lead Name | Email Address | Contact |
+
+↓
+
+Both become
+
+| name | email | mobile_without_country_code |
+
+The AI automatically identifies fields without relying on fixed column names.
+
+---
+
+## 📋 Supported CRM Fields
+
+- created_at
+- name
+- email
+- country_code
+- mobile_without_country_code
+- company
+- city
+- state
+- country
+- lead_owner
+- crm_status
+- crm_note
+- data_source
+- possession_time
+- description
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+- Next.js 15
+- React
+- TypeScript
+- Tailwind CSS
+- shadcn/ui
+- React Dropzone
+- Axios
+- Papa Parse
+- Sonner
+
+### Backend
+
+- Node.js
+- Express
+- TypeScript
+- Multer
+- Papa Parse
+- Google Gemini API
+
+---
+
+## 📂 Project Structure
+
+```
+groweasy-ai-importer
+
+├── frontend
+│   ├── app
+│   ├── components
+│   ├── lib
+│   ├── services
+│   └── types
+│
+├── backend
+│   ├── controllers
+│   ├── routes
+│   ├── services
+│   ├── ai
+│   ├── utils
+│   ├── middleware
+│   └── types
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚙️ Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Clone the repository: both frontend and backend
 
-## Learn More
+```bash
+git clone https://github.com/AdityaDeolalikar/groweasy-assignment-fe.git
+git clone https://github.com/AdityaDeolalikar/groweasy-assignment-be.git
+```
 
-To learn more about Next.js, take a look at the following resources:
+Move into the project
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+cd groweasy-ai-importer
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Frontend Setup
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+cd frontend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+npm install
+
+npm run dev
+```
+
+Runs on
+
+```
+http://localhost:3000
+```
+
+---
+
+## Backend Setup
+
+```bash
+cd backend
+
+npm install
+
+npm run dev
+```
+
+Runs on
+
+```
+http://localhost:5000
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file inside the backend folder.
+
+```env
+PORT=5000
+
+GEMINI_API_KEY=YOUR_GEMINI_API_KEY
+```
+
+---
+
+## API
+
+### Upload CSV
+
+```
+POST /api/import
+```
+
+Request
+
+```
+multipart/form-data
+```
+
+Field
+
+```
+file
+```
+
+Response
+
+```json
+{
+  "success": true,
+  "imported": 5,
+  "skipped": 0,
+  "crmRecords": []
+}
+```
+
+---
+
+## Workflow
+
+```
+Upload CSV
+
+↓
+
+Preview CSV
+
+↓
+
+Confirm Import
+
+↓
+
+Backend
+
+↓
+
+Parse CSV
+
+↓
+
+Batch Processing
+
+↓
+
+Gemini AI
+
+↓
+
+CRM Extraction
+
+↓
+
+Validation
+
+↓
+
+Frontend Result Table
+```
+
+---
+
+## AI Processing
+
+The application uses Google Gemini to:
+
+- Detect different column names
+- Map fields intelligently
+- Extract CRM records
+- Skip invalid records
+- Validate AI output
+- Return structured JSON
+
+---
+
+## Assignment Requirements Covered
+
+- CSV Upload
+- Drag & Drop Upload
+- CSV Preview
+- Responsive Table
+- Sticky Headers
+- Backend API
+- AI Field Extraction
+- Intelligent Column Mapping
+- Batch Processing
+- Structured JSON Response
+- Import Statistics
+- Error Handling
+- Loading State
+- Progress Indicator
+
+---
+
+## Future Improvements
+
+- Retry Failed AI Batches
+- Virtualized Tables
+- Dark Mode
+- Docker Support
+- Unit Testing
+- Search & Filter
+- Pagination
+
+---
+
+## Author
+
+**Aditya Deolalikar**
+
+GitHub
+
+https://github.com/AdityaDeolalikar
+
+LinkedIn
+
+https://www.linkedin.com/in/aditya-deolalikar/
