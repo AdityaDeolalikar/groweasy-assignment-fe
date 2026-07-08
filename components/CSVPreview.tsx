@@ -60,9 +60,7 @@ export default function CSVPreview({
 
       </table>
 
-      <Button className="mt-6 w-full">
-    Confirm Import
-</Button>
+      
 
     </div>
 
