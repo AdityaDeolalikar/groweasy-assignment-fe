@@ -1,4 +1,4 @@
-import { CRMRecord } from "@/types/crm";
+import { CRMRecord } from "../types/crm";
 
 interface Props {
   records: CRMRecord[];
